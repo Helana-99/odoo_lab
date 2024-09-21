@@ -1,0 +1,26 @@
+<odoo>
+    <record id="new_log_history_form_view" model="ir.ui.view">
+        <field name="name">new.log.history.form.view</field>
+        <field name="model">hms.new.log.history</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="patient_id" readonly="1"/>
+                    <field name="description"/>
+                </group>
+                <footer>
+                    <button name="action_new_log_history" type="object" class="btn-primary" string="Confirm"/>
+                    <button class="btn-secondary" string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+<record id="new_log_history_action" model="ir.actions.act_window">
+    <field name="name">New Log History</field>
+    <field name="res_model">hms.new.log.history</field>
+    <field name="view_mode">form</field>
+    <field name="target">new</field>
+</record>
+
+</odoo>

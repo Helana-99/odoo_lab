@@ -1,0 +1,34 @@
+<odoo>
+    <data>
+        <!-- Inheriting the customer tree view to add the website field -->
+         <record id="view_partner_tree_inherit" model="ir.ui.view">
+            <field name="name">res.partner.tree.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="website"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inheriting the form view to add related_patient_id in Sales & Purchases tab -->
+        <record id="view_partner_form_inherit" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Sales &amp; Purchases']//group[@name='sales_purchase']" position="inside">
+                    <group>
+                        <field name="related_patient_id"/>
+                    </group>
+                </xpath>
+
+                <!-- Ensure the Tax ID (vat) field is shown and mandatory in the form view -->
+                <xpath expr="//field[@name='vat']" position="attributes">
+                    <attribute name="required">1</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

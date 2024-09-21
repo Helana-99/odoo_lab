@@ -1,0 +1,11 @@
+<odoo>
+    <menuitem id="menu_todo"
+               name="TODO"
+               />
+
+    <menuitem id="menu_root_ticket"
+               name="tickets"
+               parent="menu_todo"
+               />
+
+</odoo>

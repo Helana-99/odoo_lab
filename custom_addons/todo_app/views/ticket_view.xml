@@ -1,0 +1,82 @@
+<!--tree-->
+<!--form-->
+<!--search-->
+<!--action-->
+<!--menuitem-->
+<odoo>
+    <record id="ticket_view_tree" model="ir.ui.view">
+        <field name="name">ticket.tree.view</field>
+        <field name="model">todo.ticket</field>
+        <field name="arch" type="xml">
+            <tree>
+                    <field name="name"/>
+                    <field name="number"/>
+                    <field name="description"/>
+                    <field name="tag"/>
+                    <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+        <record id="ticket_form_tree" model="ir.ui.view">
+        <field name="name">ticket.form.view</field>
+        <field name="model">todo.ticket</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_new"
+                            type="object"
+                            class="btn-info"
+                            string="New"
+                            invisible="state != 'cancelled'"/>
+                    <button name="action_done"
+                            type="object"
+                            class="btn-success"
+                            string="DONE"
+                            invisible="state != 'new'"/>
+                    <button name="action_cancelled"
+                            type="object"
+                            class="btn-danger"
+                            string="Cancelled"
+                            invisible="state != 'done'"/>
+
+                     <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="number"/>
+                            <field name="tag"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+        <record id="ticket_search_tree" model="ir.ui.view">
+        <field name="name">ticket.search.view</field>
+        <field name="model">todo.ticket</field>
+        <field name="arch" type="xml">
+            <search>
+                    <field name="name"/>
+                    <field name="number"/>
+            </search>
+        </field>
+    </record>
+
+       <record id="ticket_action" model="ir.actions.act_window">
+        <field name="name">Tickets</field>
+        <field name="res_model">todo.ticket</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menuitem_ticket"
+            name="ALL TICKETS"
+            parent="menu_root_ticket"
+            action="ticket_action"/>
+</odoo>
